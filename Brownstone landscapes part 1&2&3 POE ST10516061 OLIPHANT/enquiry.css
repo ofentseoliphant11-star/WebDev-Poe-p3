@@ -1,0 +1,200 @@
+
+ button {
+   box-sizing: border-box;
+  }
+  body{
+    background-color: lightgreen;
+    font-family: bold, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+  }
+  button{
+    background-color: grey;
+    border: 0 solid white;
+    border-radius: 5px;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;              /* hidden by default */
+  pointer-events: none;    /* can't be clicked while hidden */
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.modal-container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+  
+  .modal-content{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+
+
+
+/* =========================================
+   1. GLOBAL RESET & PAGE LAYOUT
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a8d5e2; /* Your light blue background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the page fills the screen */
+}
+
+/* =========================================
+   2. NAVIGATION BAR (Top)
+   ========================================= */
+header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #e6f2e6;
+    color: black;
+}
+
+/* =========================================
+   3. MAIN CONTENT (The Form)
+   ========================================= */
+main {
+    flex: 1; /* Pushes the footer to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers the form vertically */
+    align-items: center;     /* Centers the form horizontally */
+    padding: 40px 20px;
+}
+
+/* The Form Container (White Box) */
+.form-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 500px; /* Keeps the form from getting too wide on desktop */
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Fields */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Space between fields */
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 9px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #008000; /* Highlights green when clicked */
+}
+
+textarea {
+    resize: vertical; /* Allows user to drag the text box down, but not sideways */
+}
+
+/* Submit Button */
+button {
+    background-color: #008000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #d9e1d9;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   4. FOOTER (Bottom)
+   ========================================= */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+    color: #333;
+    width: 100%;
+    border-top: 1px solid #ccc;
+}

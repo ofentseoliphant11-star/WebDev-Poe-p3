@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brownstone Landscapes | Landscaping &amp; Gardening in Bloemfontein</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            color: #2f4f2f;
+            margin-bottom: 0.6em;
+        }
+        p {
+            margin-bottom: 1em;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            color: #2f4f2f;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 60px 20px;
+        }
+        .container-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        .site-header {
+            background: #2f4f2f;
+            color: #fff;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header .container-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .site-header h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .site-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .site-nav a {
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .site-nav a:hover {
+            color: #c9e2c9;
+        }
+
+      
+/* ===== LIGHTBOX MODAL ===== */
+.lightbox {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+    
+    /* Smooth fade-in */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    
+    /* Scale animation */
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: #8bbf8b;
+}
+
+
+
+/* ===== DYNAMICALLY LOADED PROJECTS ===== */
+.recent-projects {
+    padding: 60px 20px;
+    background-color: #f9fbf9;
+}
+
+.recent-projects .container-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animation for when they load in */
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards; 
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #2f4f2f;
+}
+
+.project-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.loading-text {
+    color: #777;
+    font-style: italic;
+    grid-column: 1 / -1; /* Spans across the grid while loading */
+}
+
+/* Keyframe for dynamic loading fade-in */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER / NAVIGATION ========== -->
+    <header class="site-header">
+        <div class="container-inner">
+            <h1>Brownstone Landscapes</h1>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="enquiry.html">Enquiry</a>
+                <a href="about_us.html">About Us</a>
+                <a href="contact_us.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <h2>Your doorstep. Our canvas.</h2>
+        <p>
+            Brownstone Landscapes brings the best garden to your doorstep — a landscape and
+            gardening business by William Brown, based in Bloemfontein CBD.
+        </p>
+        <a href="enquiry.html" class="btn">Start Your Enquiry</a>
+    </section>
+
+    <!-- ========== WHO WE ARE ========== -->
+    <section class="who-we-are">
+        <div class="container-inner">
+            <h2>Who We Are and What We Do</h2>
+
+            <details open>
+                <summary>Our Approach</summary>
+                <p>
+                    Brownstone Landscapes by William Brown is a landscaping &amp; gardening business
+                    based in Bloemfontein CBD, Bloemfontein. To provide an evaluation on site of the
+                    client’s garden or area, we ask questions such as: does your garden reflect your
+                    personality? Is the interior of your office or home in balance with your garden?
+                    We discuss the vision, as well as the client’s budget.
+                </p>
+            </details>
+
+            <details>
+                <summary>Our Services</summary>
+                <p>
+                    Thorough garden clean-up, installation of all bricks, sticks and stones that create
+                    expectation and flow, focus, and planting of all that green and grow. Being on-site
+                    twice per day throughout the implementation phase implies that all planting and
+                    installation happen according to plan.
+                </p>
+            </details>
+
+            <details>
+                <summary>Our Promise</summary>
+                <p class="highlight">
+                    Once our co-created vision of a landscaped garden has been realised, we invite you
+                    to make use of Brownstone Landscapes — we are the best gardening service in Bloemfontein.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- ========== LATEST PROJECTS GALLERY ========== -->
+    <section class="projects">
+        <div class="container-inner">
+            <h2>Latest Projects</h2>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Note: Added the 'gallery-item' class for JavaScript targeting -->
+                <img src="IMAGES/pic3.jpg" alt="Landscaping project 1" class="gallery-item">
+                <img src="IMAGES/pic 4.jpg" alt="Landscaping project 2" class="gallery-item">
+                <img src="IMAGES/pic 1.jpg" alt="Landscaping project 3" class="gallery-item">
+                <img src="IMAGES/pic 5.jpg" alt="Landscaping project 4" class="gallery-item">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LIGHTBOX MODAL (Hidden by default) ========== -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+        <span class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">&times;</span>
+        <!-- Image will be injected here via JS -->
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged project view">
+    </div>
+
+    <!-- ========== CONTACT CTA ========== -->
+    <section class="contact-cta">
+        <div class="container-inner">
+            <h2>Let’s Bring Your Garden to Life</h2>
+            <p>
+                Ready to make your garden reflect your personality and balance with your home or
+                office? Get in touch with Brownstone Landscapes today.
+            </p>
+            <a href="enquiry.html" class="btn">Make an Enquiry</a>
+        </div>
+    </section>
+    <!-- ========== DYNAMICALLY LOADED PROJECTS ========== -->
+    <section class="recent-projects">
+        <div class="container-inner">
+            <h2>Recent Projects</h2>
+            <p>Our latest landscaping and garden transformations.</p>
+            
+                    <!-- NEW: Search and Sort Controls -->
+            <div class="search-sort-controls">
+                <!-- 1. Added autocomplete="off" to stop browser history -->
+                <!-- 2. Added list="project-suggestions" to link to the datalist -->
+                <input type="text" id="search-input" list="project-suggestions" autocomplete="off" placeholder="Search projects by title or description...">
+                
+                <!-- 3. The Datalist containing your actual project names -->
+                <datalist id="project-suggestions">
+                    <option value="Modern Courtyard Makeover"></option>
+                    <option value="Bloemfontein Commercial Garden"></option>
+                    <option value="Residential Backyard Retreat"></option>
+                </datalist>
+
+                <select id="sort-select">
+                    <option value="default">Sort by...</option>
+                    <option value="az">Name: A to Z</option>
+                    <option value="za">Name: Z to A</option>
+                </select>
+            </div> 
+
+
+
+            <!-- JavaScript will inject the project cards inside this container -->
+            <div id="project-listings" class="projects-grid">
+                <p class="loading-text">Loading latest projects...</p>
+            </div>
+        </div>
+    </section>
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <p><strong>© Copyright 2026 Brownstone Landscapes. All rights reserved.</strong></p>
+        <p>Bloemfontein CBD, Bloemfontein &middot; Landscaping &amp; Gardening by William Brown</p>
+    </footer>
+   <script src="scrip.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Brownstone Landscapes</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom styles for Services page & Accordion -->
+    <style>
+        /* ===== BASE PAGE STYLES ===== */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2f4f2f;
+        }
+        hr {
+            border: 1px solid #dbe6db;
+            margin: 20px 0;
+        }
+        
+        /* ===== NAVIGATION ===== */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: #2f4f2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ACCORDION STYLES ===== */
+        .accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .accordion {
+            border: 1px solid #dbe6db;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 22px 25px;
+            background: #f5f8f5;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font: inherit;
+            transition: background 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background: #eaf2ea;
+        }
+
+        .accordion-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #2f4f2f;
+        }
+
+        .accordion-icon {
+            font-size: 1.8rem;
+            color: #2f4f2f;
+            line-height: 1;
+            transition: transform 0.3s ease;
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Smooth height animation */
+        .accordion-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s ease;
+        }
+
+        .accordion-panel > .accordion-content {
+            overflow: hidden;
+        }
+
+        .accordion-panel.is-open {
+            grid-template-rows: 1fr;
+        }
+
+        .accordion-content {
+            padding: 0 25px;
+            transition: padding 0.35s ease;
+        }
+
+        .accordion-panel.is-open > .accordion-content {
+            padding: 20px 25px 25px;
+        }
+
+        /* List styling inside accordion */
+        .accordion-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .accordion-content li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><b>Brownstone Landscapes</b></h1>
+        <hr>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="enquiry.html">Enquiry</a>
+            <a href="about_us.html">About us</a>
+            <a href="contact_us.html">Contact Us</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <div class="accordion-container" id="accordion-container">
+            
+            <!-- Service Accordion Item -->
+            <div class="accordion">
+                <button class="accordion-header" aria-expanded="false" aria-controls="panel-services">
+                    <h2>What services do we offer?</h2>
+                    <span class="accordion-icon" aria-hidden="true">+</span>
+                </button>
+                
+                <div class="accordion-panel" id="panel-services" role="region">
+                    <!-- Empty div where JS will inject the list dynamically -->
+                    <div class="accordion-content" data-source="services-list"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <hr>
+    
+    <footer>
+        <p><strong>© Copyright 2026 Brownstone Landscapes. All rights reserved.</strong></p>
+    </footer>
+
+   <script src="scrip.js"></script> 
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brownstone Landscapes | Enquiry</title>
+    <link rel="stylesheet" href="enquiry.css">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <!-- Note: If this page is a modal on index.html, this link might need to point to index.html#enquiry -->
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="about_us.html">About us</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+    
+    <!-- Button to open the modal -->
+    <button id="Open">Click me please</button>
+
+    <!-- The Modal Background -->
+    <div class="modal-container" id="modal_container">
+        <!-- The Modal Content Box -->
+        <div class="modal-content">
+            
+            <div>How can we help you?</div>
+            <hr>
+            <h3>Contact Form</h3>
+            
+            <!-- SUCCESS MESSAGE (Hidden by default) -->
+            <div id="form-success" style="display:none; color: green; font-weight: bold; margin-bottom: 15px;">
+                Thank you! Your enquiry has been sent successfully.
+            </div>
+
+            <div class="container">
+                <!-- SECURE ENQUIRY FORM -->
+                <form id="enquiryForm" action="https://formspree.io/f/xgaapvrz" method="POST" novalidate>
+                    
+                    <label for="name">Full Name:</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <span class="error-msg" id="error-name" style="color: red; font-size: 12px;"></span><br>
+
+                    <label for="email">Email Address:</label><br>
+                    <input type="email" id="email" name="email"><br>
+                    <span class="error-msg" id="error-email" style="color: red; font-size: 12px;"></span><br>
+
+                    <label for="phone">Phone Number:</label><br>
+                    <!-- Not required-->
+                    <input type="tel" id="phone" name="phone"><br>
+                    <span class="error-msg" id="error-phone" style="color: red; font-size: 12px;"></span><br>
+
+                    <label for="message">Project Details / Message:</label><br>
+                    <textarea id="message" name="message" rows="5"></textarea><br>
+                    <span class="error-msg" id="error-message" style="color: red; font-size: 12px;"></span><br>
+
+                    <!-- SECURITY--->
+                    <input type="text" name="_gotcha" style="display:none">
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
+            
+            <hr>
+            <!-- Button to close the modal -->
+            <button id="Close">Close me</button>
+            
+        </div>
+    </div>
+
+    <p><strong>&copy; 2026 Brownstone Landscapes. All rights reserved. info@BrownstoneLandscapes.co.za</strong></p>
+    <script src="script.js"></script>
+
+
+    <script>
+document.getElementById('enquiryForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // CLIENT-SIDE VALIDATION & ERROR HANDLING
+        let isValid = true;
+
+        let name = document.getElementById('name').value.trim();
+        let email = document.getElementById('email').value.trim();
+        let phone = document.getElementById('phone').value.trim();
+        let message = document.getElementById('message').value.trim();
+
+        let errName = document.getElementById('error-name');
+        let errEmail = document.getElementById('error-email');
+        let errPhone = document.getElementById('error-phone');
+        let errMessage = document.getElementById('error-message');
+
+    
+        errName.textContent = ''; errEmail.textContent = ''; errPhone.textContent = ''; errMessage.textContent = '';
+
+        // Validate Name
+        if (name.length < 3) {
+            errName.textContent = "Please enter a valid name.";
+            isValid = false;
+        }
+
+        // Validate Email
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            errEmail.textContent = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        // Validate Phone, If filled out, must be 10 digits
+        if (phone !== "") {
+            let phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                errPhone.textContent = "Please enter a valid 10-digit phone number.";
+                isValid = false;
+            }
+        }
+
+        // Validate Message
+        if (message.length < 10) {
+            errMessage.textContent = "Please provide more details (at least 10 characters).";
+            isValid = false;
+        }
+
+        if (!isValid) return; 
+
+        // 2. AJAX FORM SUBMISSION
+        let form = event.target;
+        let formData = new FormData(form);
+        let submitBtn = document.getElementById('submit-btn');
+        
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                // SUCCESS
+                document.getElementById('form-success').style.display = 'block';
+                form.style.display = 'none'; // hides form
+            } else {
+                alert("Oops! There was a problem submitting your form.");
+                submitBtn.textContent = "Submit";
+                submitBtn.disabled = false;
+            }
+        }).catch(error => {
+            alert("Network error. Please try again.");
+            submitBtn.textContent = "Submit";
+            submitBtn.disabled = false;
+        });
+    });
+    </script>
+</body>
+</html>

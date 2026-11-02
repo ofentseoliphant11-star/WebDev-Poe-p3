@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us</title>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Nav links: smooth hover transition */
+        nav a {
+            display: inline-block;
+            margin-right: 15px;
+            padding: 6px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #e6f2e6;
+            transform: translateY(-2px);
+        }
+
+        /* Heading fades in when the page loads (keyframe animation) */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        /* Scroll reveal: hidden until JavaScript adds .visible */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Map gets a soft shadow on hover */
+        #map {
+            transition: box-shadow 0.3s ease;
+        }
+
+        #map:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Respect people who turn off motion in their device settings */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1><b>Brownstone Landscapes</b></h1><hr>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="enquiry.html">Enquiry</a>
+        <a href="about_us.html">About us</a>
+        <a href="contact_us.html">Contact Us</a>
+    </nav><hr>
+
+    <main>
+        <h2>Contact Us</h2>
+        <p>
+            William Brown<br>
+            Email: <a href="mailto:info@BrownstoneLascapes.co.za">info@BrownstoneLascapes.co.za</a><br>
+            Phone: <a href="tel:+27835565709 / +27815121028">083 556 5709 / 0815121028</a><br>
+            Office: info@BrownstoneLascapes.co.za
+        </p>
+
+        <h2>Physical address:</h2>
+        <p>Waverley Rd<br>Waverley<br>Bloemfontein<br>9301</p>
+
+        <h2>Postal address:</h2>
+        <p>PO Box 9300<br>Bloemfontein CBD<br>Bloemfontein<br>9301</p>
+    <hr>
+        <h2>Find Us</h2>
+        <div id="map"></div>
+    </main>
+
+    <hr>
+    
+
+
+<main>
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <p>Send us a general message. We'd love to hear from you.</p>
+        
+        <form id="contactForm" action="https://formspree.io/f/xgaapvrz" method="POST">
+            
+            <label for="con-name">Full Name:</label>
+            <!-- HTML5 Validation: required -->
+            <input type="text" id="con-name" name="name" required>
+            
+            <label for="con-email">Email Address:</label>
+            <!-- HTML5 Validation: type="email" -->
+            <input type="email" id="con-email" name="email" required>
+            
+            <label for="con-type">Type of Message:</label>
+            <select id="con-type" name="message_type" required>
+                <option value="">-- Select Message Type --</option>
+                <option value="general">General Question</option>
+                <option value="compliment">Compliment</option>
+                <option value="complaint">Complaint</option>
+                <option value="volunteer">Volunteer/Sponsor Request</option>
+            </select>
+            
+            <label for="con-message">Your Message:</label>
+            <textarea id="con-message" name="message" rows="6" required></textarea>
+
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_next" value="index.html">
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</main>
+<hr>
+    <footer>
+        <p><strong>© Copyright 2026 Brownstone Landscapes. All rights reserved.</strong></p>
+    </footer>
+
+    <script src="map.js"></script>
+
+
+
+
+
+</body>
+</html>
